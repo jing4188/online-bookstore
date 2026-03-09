@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图书商城 - 用户功能展示</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    {% extends "base.html" %}
+
+    {% block content %}
+    <div class="page-header">
+        <h1><i class="fas fa-book-open"></i> 用户功能展示</h1>
+        <p class="subtitle">以下为用户端的所有功能模块：</p>
+    </div>
+
+    <div class="features-container">
+        <!-- 浏览书籍 -->
+        <div class="feature-card">
+            <div class="feature-header">
+                <h3><i class="fas fa-book"></i> 浏览书籍</h3>
+            </div>
+            <div class="feature-content">
+                <ul>
+                    <li><a href="/books">查看所有书籍</a></li>
+                    <li><a href="/book/1">查看书籍详情</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 购物车管理 -->
+        <div class="feature-card">
+            <div class="feature-header">
+                <h3><i class="fas fa-shopping-cart"></i> 购物车管理</h3>
+            </div>
+            <div class="feature-content">
+                <ul>
+                    <li><a href="/cart">查看购物车</a></li>
+                    <li><a href="/add_to_cart/1">添加书籍到购物车</a></li>
+                    <li><a href="/remove_from_cart/1">从购物车删除书籍</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 订单管理 -->
+        <div class="feature-card">
+            <div class="feature-header">
+                <h3><i class="fas fa-receipt"></i> 订单管理</h3>
+            </div>
+            <div class="feature-content">
+                <ul>
+                    <li><a href="/orders">查看所有订单</a></li>
+                    <li><a href="/order/1">查看订单详情</a></li>
+                    <li><a href="/checkout">创建新订单</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 个人中心 -->
+        <div class="feature-card">
+            <div class="feature-header">
+                <h3><i class="fas fa-user"></i> 个人中心</h3>
+            </div>
+            <div class="feature-content">
+                <ul>
+                    <li><a href="/profile">查看个人信息</a></li>
+                    <li><a href="/profile/edit">修改个人信息</a></li>
+                    <li><a href="/change_password">修改密码</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>

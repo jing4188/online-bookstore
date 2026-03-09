@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>我的订单</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .order-item {
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: white;
+        }
+        .order-status {
+            font-weight: bold;
+            color: #007bff;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>我的订单</h1>
+        
+        {% if orders %}
+        <div class="row">
+            {% for order in orders %}
+            <div class="col-md-12">
+                <div class="order-item">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong>订单号:</strong> {{ order['_id'] }}</p>
+                            <p><strong>下单时间:</strong> {{ order['created_at'].strftime('%Y-%m-%d %H:%M') }}</p>
+                            <p><strong>订单状态:</strong> <span class="order-status">{{ order['status'] }}</span></p>
+                            <p><strong>总金额:</strong> ¥{{ order['total_price'] }}</p>
+                        </div>
+                        <div class="col-md-6 text-end">
+                            <a href="/order/{{ order['_id'] }}" class="btn btn-primary">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="alert alert-info">
+            暂无订单
+        </div>
+        {% endif %}
+        
+        <a href="/" class="btn btn-secondary">返回首页</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

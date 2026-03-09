@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:4.4.27-rc0
+    container_name: bookstore-mongodb
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin123
+      MONGO_INITDB_DATABASE: bookstore
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - bookstore-network
+
+  user-app:
+    build:
+      context: ./bookstore_user
+      dockerfile: Dockerfile
+    container_name: bookstore-user
+    restart: always
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_ENV=production
+      - MONGO_HOST=mongodb
+      - MONGO_PORT=27017
+      - MONGO_USERNAME=admin
+      - MONGO_PASSWORD=admin123
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+    networks:
+      - bookstore-network
+
+  admin-app:
+    build:
+      context: ./bookstore_admin
+      dockerfile: Dockerfile
+    container_name: bookstore-admin
+    restart: always
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_ENV=production
+      - MONGO_HOST=mongodb
+      - MONGO_PORT=27017
+      - MONGO_USERNAME=admin
+      - MONGO_PASSWORD=admin123
+    ports:
+      - "5001:5001"
+    depends_on:
+      - mongodb
+    networks:
+      - bookstore-network
+
+volumes:
+  mongodb_data:
+
+networks:
+  bookstore-network:
+    driver: bridge

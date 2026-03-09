@@ -1,0 +1,102 @@
+{
+  "admins": [
+    {
+      "username": "admin",
+      "password": "0192023a7bbd73250516f069df18b500",
+      "created_at": "2025-12-24 17:04:44.144891",
+      "_id": 1
+    }
+  ],
+  "books": [
+    {
+      "title": "Python编程入门",
+      "author": "张三",
+      "price": 59.0,
+      "description": "Python编程的入门书籍，适合初学者",
+      "stock": 10,
+      "created_at": "2025-12-29 22:15:39.628758",
+      "_id": 1
+    },
+    {
+      "title": "Flask Web开发",
+      "author": "李四",
+      "price": 69.0,
+      "description": "学习Flask Web框架的实用指南",
+      "stock": 5,
+      "created_at": "2025-12-29 22:15:39.628827",
+      "_id": 2
+    },
+    {
+      "title": "JavaScript高级程序设计",
+      "author": "王五",
+      "price": 89.0,
+      "description": "深入学习JavaScript语言的高级特性",
+      "stock": 8,
+      "created_at": "2025-12-29 22:15:39.628831",
+      "_id": 3
+    },
+    {
+      "title": "数据结构与算法",
+      "author": "赵六",
+      "price": 75.0,
+      "description": "计算机科学中的经典算法和数据结构",
+      "stock": 12,
+      "created_at": "2025-12-29 22:15:39.628834",
+      "_id": 4
+    },
+    {
+      "title": "机器学习实战",
+      "author": "钱七",
+      "price": 95.0,
+      "description": "使用Python进行机器学习的实践指南",
+      "stock": 6,
+      "created_at": "2025-12-29 22:15:39.628837",
+      "_id": 5
+    },
+    {
+      "title": "设计模式之美",
+      "author": "孙八",
+      "price": 72.0,
+      "description": "软件设计中常用的设计模式及其应用",
+      "stock": 9,
+      "created_at": "2025-12-29 22:15:39.628839",
+      "_id": 6
+    },
+    {
+      "title": "全球高考",
+      "author": "木苏里",
+      "price": 45.5,
+      "description": "一本关于特殊高考的科幻小说，讲述了在神秘考试系统中求生的故事",
+      "stock": 15,
+      "created_at": "2026-01-05 20:35:00",
+      "_id": 7
+    },
+    {
+      "title": "一级律师",
+      "author": "木苏里",
+      "price": 42.8,
+      "description": "讲述了一位顶级律师在复杂案件中追寻真相的故事",
+      "stock": 12,
+      "created_at": "2026-01-05 20:35:00",
+      "_id": 8
+    },
+    {
+      "title": "默读",
+      "author": "Priest",
+      "price": 58.0,
+      "description": "一部现代悬疑推理小说，讲述了特殊罪案调查组侦破连环案件的故事",
+      "stock": 20,
+      "created_at": "2026-01-05 20:35:00",
+      "_id": 9
+    },
+    {
+      "title": "残次品",
+      "author": "Priest",
+      "price": 55.0,
+      "description": "一部未来科幻小说，讲述了在星际背景下关于人性与权力的深刻思考",
+      "stock": 18,
+      "created_at": "2026-01-05 20:35:00",
+      "_id": 10
+    }
+  ]
+}

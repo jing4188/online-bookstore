@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>购物车 - 图书商城</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    {% include 'base.html' %}
+    
+    <div class="container">
+        {% if 'user_id' not in session %}
+        <div class="alert alert-warning">
+            您尚未登录。登录后可完成订单结算。 <a href="/login" class="btn btn-primary btn-sm">立即登录</a>
+        </div>
+        {% endif %}
+        <div class="page-header">
+            <h1><i class="fas fa-shopping-cart"></i> 我的购物车</h1>
+            <p class="lead">查看并管理您的购物车商品</p>
+        </div>
+        
+        {% if books|length > 0 %}
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>书籍</th>
+                                    <th>单价</th>
+                                    <th>数量</th>
+                                    <th>小计</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for book in books %}
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <img src="{{ book.image if book.image else '/static/images/default-book.jpg' }}" alt="{{ book.title }}" class="img-thumbnail me-3" style="width: 60px;">
+                                            <div>
+                                                <h6 class="mb-0">{{ book.title }}</h6>
+                                                <small class="text-muted">作者: {{ book.author }}</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>¥{{ book.price }}</td>
+                                    <td>
+                                        <form method="POST" action="/add_to_cart/{{ book._id }}" class="d-inline">
+                                            <input type="hidden" name="quantity" value="1">
+                                            <button type="submit" class="btn btn-sm btn-outline-secondary" name="action" value="decrease">-</button>
+                                        </form>
+                                        <span class="mx-2">{{ book.quantity }}</span>
+                                        <form method="POST" action="/add_to_cart/{{ book._id }}" class="d-inline">
+                                            <input type="hidden" name="quantity" value="1">
+                                            <button type="submit" class="btn btn-sm btn-outline-secondary" name="action" value="increase">+</button>
+                                        </form>
+                                    </td>
+                                    <td>¥{{ book.subtotal }}</td>
+                                    <td>
+                                        <form method="POST" action="/remove_from_cart/{{ book._id }}" class="d-inline">
+                                            <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">订单摘要</h5>
+                        <div class="mb-3">
+                            <strong>商品总数:</strong> {{ books|length }} 件
+                        </div>
+                        <div class="mb-3">
+                            <strong>总金额:</strong> <span class="text-danger">¥{{ total_price }}</span>
+                        </div>
+                        <div class="d-grid gap-2">
+                            {% if 'user_id' in session %}
+                            <a href="/checkout" class="btn btn-success"><i class="fas fa-check"></i> 去结算</a>
+                            {% else %}
+                            <a href="/login" class="btn btn-success"><i class="fas fa-sign-in-alt"></i> 登录并结算</a>
+                            {% endif %}
+                            <a href="/dashboard" class="btn btn-outline-secondary"><i class="fas fa-arrow-left"></i> 继续购物</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="alert alert-info">
+            <i class="fas fa-info-circle"></i> 您的购物车是空的。去 <a href="/dashboard">浏览书籍</a> 吧！
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
